@@ -83,11 +83,32 @@ public class MagicSquare {
 
        // to start filling in the square, starting from 2
 
-        for (int i = 2; i < this.size +1 ; i++) {
-            ''
-            if (this.square[this.rows][this.columns] == 0) {
+        for (int i = 2; i < this.size; i++) {
 
-                this.square[this.rows][this.columns] = i;
+            /*
+            Applies rule a
+             */
+
+            if (this.square[this.rows + 1][this.columns + 1] == this.n) {
+
+                this.square[this.rows + 1][this.columns +1] = i;
+            }
+
+            /*
+             Applies rule b
+             */
+            else if (this.square[(this.rows + 1) % this.n][(this.columns + 1) % this.n] == 0) {
+
+                this.square[this.rows - 1][this.columns] = i;
+            }
+
+            /*
+            Applies rule c
+             */
+
+            else if (this.square[(this.rows + 1) % this.n] == 0) {
+
+                this.square[this.rows - this.rows][this.columns]
             }
 
 
