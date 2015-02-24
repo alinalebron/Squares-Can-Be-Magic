@@ -89,17 +89,24 @@ public class MagicSquare {
             Applies rule a
              */
 
-            if (this.square[this.rows + 1][this.columns + 1] == this.n) {
+            if ((this.rows + 1) && (this.columns + 1) < this.n) {
 
-                this.square[this.rows + 1][this.columns +1] = i;
+                this.rows++;
+                this.columns++;
+
+                this.square[this.rows][this.columns] = i;
+
             }
 
             /*
              Applies rule b
              */
-            else if (this.square[(this.rows + 1) % this.n][(this.columns + 1) % this.n] == 0) {
+            else if (((this.rows + 1) % this.n) && ((this.columns + 1) % this.n) == 0) {
 
-                this.square[this.rows - 1][this.columns] = i;
+                this.rows--;
+                
+                this.square[this.rows][this.columns] = i;
+
             }
 
             /*
@@ -108,8 +115,18 @@ public class MagicSquare {
 
             else if (this.square[(this.rows + 1) % this.n] == 0) {
 
-                this.square[this.rows - this.rows][this.columns]
+                this.square[this.rows - this.rows][this.columns + 1] = i ;
+
+                this.rows = this.rows - this.rows;
+                this.columns++;
+
             }
+
+            /*
+            Applies rule d
+             */
+
+            else if ()
 
 
         }
