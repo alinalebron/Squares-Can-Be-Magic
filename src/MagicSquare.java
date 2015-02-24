@@ -104,7 +104,7 @@ public class MagicSquare {
             else if (((this.rows + 1) % this.n) && ((this.columns + 1) % this.n) == 0) {
 
                 this.rows--;
-                
+
                 this.square[this.rows][this.columns] = i;
 
             }
@@ -113,12 +113,13 @@ public class MagicSquare {
             Applies rule c
              */
 
-            else if (this.square[(this.rows + 1) % this.n] == 0) {
+            else if ((this.rows + 1) % this.n) == 0 {
 
-                this.square[this.rows - this.rows][this.columns + 1] = i ;
+                this.rows = 0;
 
-                this.rows = this.rows - this.rows;
                 this.columns++;
+
+                this.square[this.rows][this.columns] = i ;
 
             }
 
@@ -126,8 +127,21 @@ public class MagicSquare {
             Applies rule d
              */
 
-            else if ()
+            else if ((this.columns + 1 % this.n == 0) {
 
+                this.columns = 0;
+
+                this.rows++;
+
+                this.square[this.rows][this.columns] = i;
+            }
+
+            else if (this.square[this.rows][this.columns] != null) {
+
+                this.rows--;
+
+                this.square[this.rows][this.columns] = i;
+            }
 
         }
 
