@@ -145,8 +145,7 @@ public class MagicSquare {
 
         }
 
-
-
+        System.out.print(this.square);
 
 
     }
