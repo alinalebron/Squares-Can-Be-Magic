@@ -76,8 +76,8 @@ public class MagicSquare {
 
     private static void fillSquare () {
 
-        this.rows = 0;
-        this.columns = this.size / 2;
+        this.rows = this.n - 1;
+        this.columns = this.n / 2;
 
         this.square[this.rows][this.columns] = 1;
 
