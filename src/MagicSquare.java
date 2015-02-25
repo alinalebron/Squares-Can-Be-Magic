@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  * Created by alina on 2/22/15.
@@ -29,23 +30,22 @@ public class MagicSquare {
 
     private void getSize() {
 
-        System.out.print("Type in an odd-number for the size of the square:");
+        Scanner input= new Scanner((System.in));
 
-        Scanner scanner= new Scanner((System.in));
+        int n;
+        do {
+            System.out.println("Please enter an odd number: ");
+            n = input.nextInt();
+        } while (n % 2 == 0 );
 
-        int n = scanner.nextInt();
-
-        if (n % 2 == 0) {
-
-            System.out.println("Please enter an odd number");
-        }
-
-        else {
-
-            this.square = new int[n][n];
-        }
+        square = new int[n][n];
 
     }
+
+
+
+
+
 
 
     /**
@@ -74,67 +74,95 @@ public class MagicSquare {
 
     private void fillSquare () {
 
-        int n = square.length;
+        System.out.println("filling square");
+        int n = square.length - 1;
 
-        int size = n * n;
+        int size = (n+1) * (n+1);
 
-        int rows = n - 1;
-        int columns = n / 2;
+        int row = n;
+        int column = n / 2;
 
-        square[rows][columns] = 1;
+        square[row][column] = 1;
 
        // to start filling in the square, starting from 2
 
         for (int i = 2; i < size + 1 ; i++) {
 
             /*
+             Applies rule a
+             */
+
+            if ( ((row + 1) <= n) && ((column + 1) <= n) ) {
+                /*
+                Applies rule e
+                */
+                if (square[row + 1][column + 1] != 0) {
+
+                    row--;
+
+                    square[row][column] = i;
+
+                    System.out.println("row: " + row + " " + "column: " + column + " " + "i: " + i + " ");
+                    System.out.println();
+
+                }
+                else {
+
+                    row++;
+
+                    column++;
+
+                    square[row][column] = i;
+
+                    System.out.println("row: " + row + " " + "column: " + column + " " + "i: " + i + " ");
+                    System.out.println();
+                }
+            }
+
+            /*
              Applies rule b
              */
 
-            if (((rows + 1) > n) && ((columns + 1) > n)) {
+            else if (((row + 1) > n) && ((column + 1) > n)) {
 
-                rows--;
+                row--;
 
-                square[rows][columns] = i;
+                square[row][column] = i;
 
-            }
+                System.out.println("row: " + row + " " + "column: " + column + " " + "i: " + i + " ");
+                System.out.println();            }
 
             /*
             Applies rule c
              */
 
-            else if (((rows + 1) % n == 0) && (columns <= rows)) {
+            else if (((row + 1) > n) && ((column + 1) <= n)) {
 
-                rows = 0;
+                row = 0;
 
-                columns++;
+                column++;
 
-                square[rows][columns] = i ;
+                square[row][column] = i ;
 
-            }
+                System.out.println("row: " + row + " " + "column: " + column + " " + "i: " + i + " ");
+                System.out.println();            }
 
             /*
             Applies rule d
              */
 
-            else if (((columns + 1) % n == 0) && (rows <= (n -1))) {
+            else if (((column + 1) > n) && ((row + 1) <= n )) {
 
-                columns = 0;
+                column = 0;
 
-                rows++;
+                row++;
 
-                square[rows][columns] = i;
-            }
+                square[row][column] = i;
 
-            /*
-            Applies rule e
-             */
 
-            else if (square[rows][columns] != 0) {
+                System.out.println("row: " + row + " " + "column: " + column + " " + "i: " + i + " ");
+                System.out.println();
 
-                rows--;
-
-                square[rows][columns] = i;
             }
 
 
@@ -215,6 +243,10 @@ public class MagicSquare {
      */
     @Override
     public String toString() {
-        return super.toString();
+
+        String whatever = Arrays.deepToString(square);
+
+
+        return whatever;
     }
 }

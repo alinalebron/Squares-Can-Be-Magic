@@ -7,6 +7,8 @@ public class MagicSquareTester {
     public static void main(String[] args) {
 
         MagicSquare magic = new MagicSquare();
+
+//        System.out.println(magic.toString());
     }
 
 }
