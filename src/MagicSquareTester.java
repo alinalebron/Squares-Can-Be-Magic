@@ -19,6 +19,8 @@ public class MagicSquareTester {
         if(magic.isMagic())
         {
 
+            System.out.println(); // blank space
+
             System.out.println(magic.toString());
 
             System.out.println("The square is magic! Awesome!");

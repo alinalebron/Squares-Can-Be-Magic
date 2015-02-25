@@ -57,8 +57,10 @@ public class MagicSquare
         number. If the user types in an even number, it asks
         again for an odd number.
          */
+
         do
         {
+
             System.out.println("Please enter an odd number: ");
 
             n = input.nextInt(); // stores the input

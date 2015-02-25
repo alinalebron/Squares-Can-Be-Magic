@@ -1,0 +1,14 @@
+** Output **
+
+Please enter an odd number:
+8
+Please enter an odd number: 
+6
+Please enter an odd number: 
+3
+
+4 9 2 
+3 5 7 
+8 1 6 
+
+The square is magic! Awesome!
