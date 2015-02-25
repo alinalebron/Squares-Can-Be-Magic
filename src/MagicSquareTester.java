@@ -8,6 +8,12 @@ public class MagicSquareTester {
 
         MagicSquare magic = new MagicSquare();
 
+        if(magic.isMagic()) {
+            System.out.println("The square is magic");
+        }
+
+       System.out.println(magic.toString());
+
 //        System.out.println(magic.toString());
     }
 

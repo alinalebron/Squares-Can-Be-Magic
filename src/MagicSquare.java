@@ -1,6 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * Created by alina on 2/22/15.
@@ -17,7 +18,7 @@ public class MagicSquare {
 
     public MagicSquare() {
 
-        getSize();
+        setSize();
         fillSquare();
 
     }
@@ -28,7 +29,7 @@ public class MagicSquare {
      *
      */
 
-    private void getSize() {
+    private void setSize() {
 
         Scanner input= new Scanner((System.in));
 
@@ -41,11 +42,6 @@ public class MagicSquare {
         square = new int[n][n];
 
     }
-
-
-
-
-
 
 
     /**
@@ -177,14 +173,49 @@ public class MagicSquare {
      * @return the sum of an entire row
      */
 
-    public int rowSum(int total) {
+    public int checkRows(int[][] square, int constant) {
 
-        return total;
+
+        for (int i = 0; i < square.length ; i++) {
+
+            int rowSum = 0 ;
+
+            for (int j = 0; j < square[i].length ; j++) {
+
+                rowSum += square[i][j];
+
+            }
+
+            if (rowSum != constant) {
+
+                return 0;
+            }
+
+        }
+
+        return 1;
     }
 
-    public int columnSum (int total) {
+    public int checkColumns (int[][] square, int constant) {
 
-        return total;
+        for (int i = 0; i < square.length ; i++) {
+
+            int colSum = 0 ;
+
+            for (int j = 0; j < square[i].length ; j++) {
+
+                colSum += square[j][i];
+
+            }
+
+            if (colSum != constant) {
+
+                return 0;
+            }
+
+        }
+
+        return 1;
     }
 
     /**
@@ -192,30 +223,46 @@ public class MagicSquare {
      * from the diagonal going left-to-right
      * (left-most column in the first row to the right-most
      * column in the last row)
-     * @param total
-     * @return
-     */
-
-    public int diagonalOneSum (int total) {
-
-        return total;
-    }
-
-    /**
-     * Calculates the sum of all of the numbers
-     * from the diagonal going right-to-left
+     * and the diagonal going right-to-left
      * (right-most column in the first row to the left-most
      * column in the last row)
-     * @param total
+     * @param
      * @return
      */
 
-    public int diagonalTwoSum(int total) {
+    public int checkDiagonals(int[][] square, int constant) {
 
-        return total;
+        int diagonalSum = 0;
+
+        for (int i = 0; i < square.length ; i++) {
+
+            diagonalSum += square[i][i];
+        }
+
+        if (diagonalSum != constant) {
+
+            return 0;
+        }
+
+        diagonalSum = 0 ;
+
+        for (int i = square.length - 1; i > -1 ; i--) {
+
+            diagonalSum += square[i][i];
+
+        }
+
+        if (diagonalSum != constant){
+
+            return 0;
+        }
+
+        else {
+            return 1;
+        }
+
+
     }
-
-
 
     /**
      * Tells if the square is magic
@@ -232,7 +279,25 @@ public class MagicSquare {
         and see if they're equal
         if row 1 == row 2 == row 3...==column 1...==diagonalOne==diagonalTwo
          */
-        return true;
+
+        int length = square.length;
+
+        int constant = (length * ((length * length) + 1)) / 2;
+
+        int rowsSum = checkRows(square, constant);
+        int columnsSum = checkColumns(square, constant);
+        int diagonalsSum = checkDiagonals(square, constant);
+
+        if ((rowsSum == 1) && (columnsSum == 1) && (diagonalsSum == 1) ){
+
+            return true;
+        }
+
+        else {
+
+            return false;
+        }
+
     }
 
 
@@ -244,9 +309,21 @@ public class MagicSquare {
     @Override
     public String toString() {
 
-        String whatever = Arrays.deepToString(square);
+        String thePrint = "";
+
+        for (int i = 0; i < square.length ; i++) {
+
+            for (int j = 0; j <square[i].length ; j++) {
+
+                thePrint += Integer.toString(square[i][j]) + " ";
 
 
-        return whatever;
+
+            }
+            thePrint += "\n";
+
+        }
+
+        return thePrint;
     }
 }
