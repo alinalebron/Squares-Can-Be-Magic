@@ -4,11 +4,9 @@
 public class MagicSquareTester {
 
 
-    MagicSquare testSquare = new MagicSquare();
+    public static void main(String[] args) {
 
-    System.out.println("What size do you want your square to be?");
-
-
-
+        MagicSquare magic = new MagicSquare();
+    }
 
 }

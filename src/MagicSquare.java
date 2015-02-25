@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.Scanner;
 
 /**
  * Created by alina on 2/22/15.
@@ -6,10 +7,6 @@ import java.lang.reflect.Array;
 public class MagicSquare {
 
     private int [][] square; // the table aka the square
-    private int n; // the integer the user puts
-    private int rows; // size of the rows
-    private int columns; // size of the columns
-    private int size; // size of the square (row x column)
 
 
     /**
@@ -19,7 +16,9 @@ public class MagicSquare {
 
     public MagicSquare() {
 
-        this.square = new int[n][n];
+        getSize();
+        fillSquare();
+
     }
 
     /**
@@ -27,27 +26,26 @@ public class MagicSquare {
      * It only accepts positive odd-numbered values
      *
      */
-    private static int setSize (int size) {
 
-        if (this.n % 2 == 0) {
+    private void getSize() {
 
-            return 0;
+        System.out.print("Type in an odd-number for the size of the square:");
+
+        Scanner scanner= new Scanner((System.in));
+
+        int n = scanner.nextInt();
+
+        if (n % 2 == 0) {
+
+            System.out.println("Please enter an odd number");
         }
 
         else {
 
-            this.size = this.n * this.n;
-
-            return this.size;
+            this.square = new int[n][n];
         }
 
     }
-
-    public static void getSize() {
-
-        System.out.println(this.size);
-    }
-
 
 
     /**
@@ -74,38 +72,30 @@ public class MagicSquare {
      *
      */
 
-    private static void fillSquare () {
+    private void fillSquare () {
 
-        this.rows = this.n - 1;
-        this.columns = this.n / 2;
+        int n = square.length;
 
-        this.square[this.rows][this.columns] = 1;
+        int size = n * n;
+
+        int rows = n - 1;
+        int columns = n / 2;
+
+        square[rows][columns] = 1;
 
        // to start filling in the square, starting from 2
 
-        for (int i = 2; i < this.size; i++) {
-
-            /*
-            Applies rule a
-             */
-
-            if ((this.rows + 1) && (this.columns + 1) < this.n) {
-
-                this.rows++;
-                this.columns++;
-
-                this.square[this.rows][this.columns] = i;
-
-            }
+        for (int i = 2; i < size + 1 ; i++) {
 
             /*
              Applies rule b
              */
-            else if (((this.rows + 1) % this.n) && ((this.columns + 1) % this.n) == 0) {
 
-                this.rows--;
+            if (((rows + 1) > n) && ((columns + 1) > n)) {
 
-                this.square[this.rows][this.columns] = i;
+                rows--;
+
+                square[rows][columns] = i;
 
             }
 
@@ -113,13 +103,13 @@ public class MagicSquare {
             Applies rule c
              */
 
-            else if ((this.rows + 1) % this.n) == 0 {
+            else if (((rows + 1) % n == 0) && (columns <= rows)) {
 
-                this.rows = 0;
+                rows = 0;
 
-                this.columns++;
+                columns++;
 
-                this.square[this.rows][this.columns] = i ;
+                square[rows][columns] = i ;
 
             }
 
@@ -127,30 +117,28 @@ public class MagicSquare {
             Applies rule d
              */
 
-            else if ((this.columns + 1) % this.n == 0) {
+            else if (((columns + 1) % n == 0) && (rows <= (n -1))) {
 
-                this.columns = 0;
+                columns = 0;
 
-                this.rows++;
+                rows++;
 
-                this.square[this.rows][this.columns] = i;
+                square[rows][columns] = i;
             }
 
             /*
             Applies rule e
              */
 
-            else if (this.square[this.rows][this.columns] != null) {
+            else if (square[rows][columns] != 0) {
 
-                this.rows--;
+                rows--;
 
-                this.square[this.rows][this.columns] = i;
+                square[rows][columns] = i;
             }
 
+
         }
-
-        System.out.print(this.square);
-
 
     }
 
