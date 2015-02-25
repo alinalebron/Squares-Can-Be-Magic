@@ -1,5 +1,10 @@
 /**
- * Created by alina on 2/22/15.
+ * File : MagicSquareTester.java
+ *
+ * A
+ *
+ * I affirm that this program is entirely my own work and none of it is the work of any other person.
+ * Created by @AlinaLebron on 2/24/15.
  */
 public class MagicSquareTester {
 
@@ -9,12 +14,18 @@ public class MagicSquareTester {
         MagicSquare magic = new MagicSquare();
 
         if(magic.isMagic()) {
+
+            System.out.println(magic.toString());
+
             System.out.println("The square is magic");
+
         }
 
-       System.out.println(magic.toString());
+        else {
 
-//        System.out.println(magic.toString());
+            System.out.println("Sorry! This square isn't magic!");
+        }
+
     }
 
 }
